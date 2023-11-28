@@ -35,6 +35,7 @@ int main() {
     int opc = -1;
     time_t inicioIntervalo, fimIntervalo;
     time_t time(time_t *inicioIntervalo);
+    const char *nomeArquivo = "relatorio.txt";
 
     while (opc != 0){
         printf("*------ MENU ------*\n");
@@ -156,4 +157,38 @@ void registrarSaida(Passageiro* passageiros, int totalPassageiros, int estacaoSa
     printf("\nInsira o numero da estação de saida do metro.");
     scanf("%d", &estacao);
 
+    /*
+     * Retirar -1 no total de passageiros da estação escolhida.
+     *  provavelmente usar Structs para as estações disponiveis MAX 5
+    */
+
+}
+
+void gerarRelatorio(Passageiro* passageiros, int totalPassageiros, time_t inicioIntervalo, time_t fimIntervalo, const char *nomeArquivo){
+    // Abrir o arquivo para escrita
+    FILE *arquivo = fopen(nomeArquivo, "w");
+    Passageiro passageiro[MAX_ITEM];
+
+    // Verificar se o arquivo foi aberto com sucesso
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return;
+    }
+
+    // Escrever cabeçalho no arquivo
+    fprintf(arquivo, "Relatório de Fluxo geral das estações\n");
+    fprintf(arquivo, "--------------------------------------\n");
+
+    // Escrever informações de cada funcionário no arquivo
+    for (int i = 0; i < totalPassageiros; i++) {
+        fprintf(arquivo, "ID do Cartão: %d\n", passageiro[i].idCartao);
+        fprintf(arquivo, "Nome: %d\n", Passageiro[i].nomePassageiro);
+        fprintf(arquivo, ": %.d\n", );
+        fprintf(arquivo, "------------------------\n");
+    }
+
+    // Fechar o arquivo
+    fclose(arquivo);
+
+    printf("Relatório gerado com sucesso e salvo em %s.\n", nomeArquivo);
 }
