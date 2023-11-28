@@ -180,15 +180,18 @@ void gerarRelatorio(Passageiro* passageiros, int totalPassageiros, time_t inicio
     fprintf(arquivo, "--------------------------------------\n");
 
     // Escrever informações de cada funcionário no arquivo
-    for (int i = 0; i < totalPassageiros; i++) {
+    for (int i = 0; i < contPassageiro; i++) {
         fprintf(arquivo, "ID do Cartão: %d\n", passageiro[i].idCartao);
-        fprintf(arquivo, "Nome: %d\n", Passageiro[i].nomePassageiro);
+        fprintf(arquivo, "Nome: %d\n", passageiro[i].nomePassageiro);
         fprintf(arquivo, ": %.d\n", );
         fprintf(arquivo, "------------------------\n");
     }
+
+    
 
     // Fechar o arquivo
     fclose(arquivo);
 
     printf("Relatório gerado com sucesso e salvo em %s.\n", nomeArquivo);
 }
+
