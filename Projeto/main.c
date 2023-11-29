@@ -23,7 +23,7 @@ typedef struct {
 
 void cadastroPassageiro();
 
-void registrarEntrada(Passageiro* passageiros, int estacaoEntrada);
+void registrarEntrada(Passageiro* passageiros, int idCartao, int estacaoEntrada);
 
 void registrarSaida(Passageiro* passageiros, int estacaoSaida);
 
@@ -42,6 +42,13 @@ int main() {
 
     struct tm intervaloI;
     struct tm intervaloF;
+
+    //Struct
+
+    Passageiro passageiro[MAX_ITEM];
+    int idCartao = 0;
+    int estacao = 0;
+
 
     //função para limpar totalPassageiros
     for (int i = 0; i < 5; i++) {
@@ -67,8 +74,15 @@ int main() {
             case 1:
                 //registrar entrada
 
+                printf("\n-------------------\n");
+                printf("Registrando entrada...\n");
+                printf("Escolha o ID do passageiro que deseja: \n");
+                scanf("%d", &idCartao);
 
-                //registrarEntrada(passageiros[contPassageiros], estacao)
+                printf("\nInsira o numero da estacao de entrada");
+                scanf("%d", &estacao);
+
+                registrarEntrada(passageiro, idCartao, estacao);
                 break;
             case 2:
                 //registrar saida
@@ -114,15 +128,11 @@ void cadastroPassageiro(){
     contPassageiro++;
 }
 
-void registrarEntrada(Passageiro* passageiros, int estacaoEntrada){
-    Passageiro passageiro[MAX_ITEM];
-    int idCartao = 0;
-    int estacao;
+void registrarEntrada(Passageiro* passageiros, int idCartao, int estacao){
+    Passageiro* passageiro[MAX_ITEM];
 
-    printf("Escolha o ID do passageiro que deseja: \n");
-    scanf("%d", &idCartao);
 
-    if (idCartao < 0 && idCartao > contPassageiro){
+    if (idCartao <= 0 && idCartao > contPassageiro){
         printf("ID não encontrado.\n");
         printf("Cadastrando novo passageiro...\n");
         cadastroPassageiro();
@@ -135,13 +145,11 @@ void registrarEntrada(Passageiro* passageiros, int estacaoEntrada){
 
     struct tm tempoEntrada;
 
-    printf("\nInsira o horário de entrada (HH:MM:SS): ");
-    scanf("%d:%d:%d", &tempoEntrada.tm_hour, &tempoEntrada.tm_min, &tempoEntrada.tm_sec);
+    //printf("\nInsira o horário de entrada (HH:MM:SS): ");
+    //scanf("%d:%d:%d", &tempoEntrada.tm_hour, &tempoEntrada.tm_min, &tempoEntrada.tm_sec);
 
-    passageiro[idCartao].horarioEntrada = mktime(&tempoEntrada);
+    //passageiro[idCartao]->horarioEntrada = mktime(&tempoEntrada);
 
-    printf("\nInsira o numero da estação de entrada");
-    scanf("%d", &estacao);
 
     /*
      * Adicionar +1 no total de passageiros da estação escolhida.
@@ -149,6 +157,12 @@ void registrarEntrada(Passageiro* passageiros, int estacaoEntrada){
     */
 
     totalPassageiros[estacao][0] = totalPassageiros[estacao][0] + 1;
+
+    passageiro[idCartao]->estacaoEntrada = estacao;
+
+    printf("\nEntrada registrada!\n");
+
+    return;
 }
 
 void registrarSaida(Passageiro* passageiros, int estacaoSaida){
