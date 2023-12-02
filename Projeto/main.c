@@ -23,7 +23,7 @@ typedef struct {
 
 void cadastroPassageiro();
 
-void registrarEntrada(Passageiro* passageiros, int idCartao, int estacaoEntrada);
+void registrarEntrada(Passageiro* passageiros, int idCartao, time_t horarioEntrada, int estacaoEntrada);
 
 void registrarSaida(Passageiro* passageiros, int estacaoSaida);
 
@@ -37,11 +37,22 @@ int main() {
      * deve conter
      */
     int opc = -1;
-    time_t time(time_t *inicioIntervalo);
+
+    /*
+     * Variaveis de tempo do time.h
+     */
+
+    time_t inicioIntervalo;
+    time(&inicioIntervalo);
+    time_t horarioEntrada;
+    time_t horarioSaida;
+
+
+
+
+
     const char *nomeArquivo = "relatorio.txt";
 
-    struct tm intervaloI;
-    struct tm intervaloF;
 
     //Struct
 
@@ -79,26 +90,25 @@ int main() {
                 printf("Escolha o ID do passageiro que deseja: \n");
                 scanf("%d", &idCartao);
 
-                printf("\nInsira o numero da estacao de entrada");
+                time(&horarioEntrada);
+
+
+
+                printf("\nInsira o numero da estacao de entrada: ");
                 scanf("%d", &estacao);
 
-                registrarEntrada(passageiro, idCartao, estacao);
+                registrarEntrada(passageiro, idCartao, horarioEntrada,estacao);
                 break;
             case 2:
                 //registrar saida
                 break;
             case 3:
                 //gerar relatorio
-                printf("Digite o inicio do intervalo que deseja gerar o relatorio \n");
-                scanf("%d:%d:%d", &intervaloI.tm_hour, &intervaloI.tm_min, &intervaloI.tm_sec);
 
-                printf("Digite o fim do intervalo que deseja gerar o relatorio \n");
-                scanf("%d:%d:%d", &intervaloF.tm_hour, &intervaloF.tm_min, &intervaloF.tm_sec);
 
-                time_t inicioIntervalo = mktime(&intervaloI);
-                time_t fimIntervalo = mktime(&intervaloF);
 
-                //gerarRelatorio(passageiros[idCartao],totalPassageiros ,inicioIntervalo, fimIntervalo);
+
+                //gerarRelatorio(passageiros,totalPassageiros ,inicioIntervalo, fimIntervalo);
 
                 break;
             case 4:
@@ -128,7 +138,7 @@ void cadastroPassageiro(){
     contPassageiro++;
 }
 
-void registrarEntrada(Passageiro* passageiros, int idCartao, int estacao){
+void registrarEntrada(Passageiro* passageiros, int idCartao, time_t horarioEntrada, int estacao){
     Passageiro* passageiro[MAX_ITEM];
 
 
@@ -143,12 +153,9 @@ void registrarEntrada(Passageiro* passageiros, int idCartao, int estacao){
         idCartao = contPassageiro;
     }
 
-    struct tm tempoEntrada;
 
-    //printf("\nInsira o horário de entrada (HH:MM:SS): ");
-    //scanf("%d:%d:%d", &tempoEntrada.tm_hour, &tempoEntrada.tm_min, &tempoEntrada.tm_sec);
 
-    //passageiro[idCartao]->horarioEntrada = mktime(&tempoEntrada);
+    passageiro[idCartao]->horarioEntrada = horarioEntrada;
 
 
     /*
@@ -214,7 +221,7 @@ void registrarSaida(Passageiro* passageiros, int estacaoSaida){
 void gerarRelatorio(Passageiro* passageiros, time_t inicioIntervalo, time_t fimIntervalo, const char *nomeArquivo){
     // Abrir o arquivo para escrita
     FILE *arquivo = fopen(nomeArquivo, "w");
-    Passageiro passageiro[MAX_ITEM];
+    Passageiro *passageiro[MAX_ITEM];
 
 
     // Verificar se o arquivo foi aberto com sucesso
@@ -230,14 +237,14 @@ void gerarRelatorio(Passageiro* passageiros, time_t inicioIntervalo, time_t fimI
     fprintf(arquivo, "Passageiros");
     // Escrever informações de cada funcionário no arquivo
     for (int i = 0; i < contPassageiro; i++) {
-        if (passageiro[i].horarioEntrada < inicioIntervalo && passageiro[i].horarioSaida > fimIntervalo){
+        if (passageiro[i]->horarioEntrada < inicioIntervalo && passageiro[i]->horarioSaida > fimIntervalo){
             fprintf(arquivo, "------------------------\n");
-            fprintf(arquivo, "ID do Cartão: %d\n", passageiro[i].idCartao);
-            fprintf(arquivo, "Nome: %d\n", passageiro[i].nomePassageiro);
-            fprintf(arquivo, "Horario de entrada: %.d\n", passageiro[i].horarioEntrada);
-            fprintf(arquivo, "Horario de saida: %.d\n", passageiro[i].horarioSaida);
-            fprintf(arquivo, "Estação de entrada: %.d\n", passageiro[i].estacaoEntrada);
-            fprintf(arquivo, "Estação de Saida: %.d\n", passageiro[i].estacaoSaida);
+            fprintf(arquivo, "ID do Cartão: %d\n", passageiro[i]->idCartao);
+            fprintf(arquivo, "Nome: %d\n", passageiro[i]->nomePassageiro);
+            fprintf(arquivo, "Horario de entrada: %.d\n", passageiro[i]->horarioEntrada);
+            fprintf(arquivo, "Horario de saida: %.d\n", passageiro[i]->horarioSaida);
+            fprintf(arquivo, "Estação de entrada: %.d\n", passageiro[i]->estacaoEntrada);
+            fprintf(arquivo, "Estação de Saida: %.d\n", passageiro[i]->estacaoSaida);
             fprintf(arquivo, "------------------------\n");
         }
     }
