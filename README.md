@@ -10,7 +10,7 @@ O grupo do projeto é composto por:
 ## Video de Apresentação
 Esse é o video de apresentação do funcionamento do projeto
 
-[![Watch the video](https://youtu.be/b5qJN1agmvA)
+[![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://youtu.be/b5qJN1agmvA)
 
 ## Descrição
 O projeto trata-se do 6 tema proposto pelo professor Marcos Roberto de Morais, Sistema de Controle de Fluxo
