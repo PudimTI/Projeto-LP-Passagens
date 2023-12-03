@@ -1,3 +1,0 @@
-C:/Users/ppjoa/OneDrive/Documentos/Projeto-LP-Passagens/projeto_fiinal/cmake-build-debug/CMakeFiles/projeto_fiinal.dir
-C:/Users/ppjoa/OneDrive/Documentos/Projeto-LP-Passagens/projeto_fiinal/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/ppjoa/OneDrive/Documentos/Projeto-LP-Passagens/projeto_fiinal/cmake-build-debug/CMakeFiles/rebuild_cache.dir

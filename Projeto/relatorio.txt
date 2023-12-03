@@ -3,15 +3,15 @@ Relatório de Fluxo geral das estações
 PassageirosEstação 0: Entradas ↑/Saida ↓ [0] 
 Estação 0: Entradas ↑/Saida ↓ [0] 
 
-Estação 1: Entradas ↑/Saida ↓ [1] 
+Estação 1: Entradas ↑/Saida ↓ [0] 
 Estação 1: Entradas ↑/Saida ↓ [1] 
 
-Estação 2: Entradas ↑/Saida ↓ [0] 
 Estação 2: Entradas ↑/Saida ↓ [1] 
+Estação 2: Entradas ↑/Saida ↓ [0] 
 
 Estação 3: Entradas ↑/Saida ↓ [0] 
 Estação 3: Entradas ↑/Saida ↓ [0] 
 
-Estação 4: Entradas ↑/Saida ↓ [1] 
+Estação 4: Entradas ↑/Saida ↓ [0] 
 Estação 4: Entradas ↑/Saida ↓ [0] 
 
