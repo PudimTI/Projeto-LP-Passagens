@@ -7,6 +7,10 @@ O grupo do projeto é composto por:
 - João Pedro Vaz
 - Kelvyn Cortez
 
+## Video de Apresentação
+Esse é o video de apresentação do funcionamento do projeto
+
+[![Watch the video](https://youtu.be/b5qJN1agmvA)
 
 ## Descrição
 O projeto trata-se do 6 tema proposto pelo professor Marcos Roberto de Morais, Sistema de Controle de Fluxo
